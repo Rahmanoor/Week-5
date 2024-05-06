@@ -1,0 +1,331 @@
+*Week 5:*
+
+
+*Question: 1*
+
+# Importing required libraries
+import pandas as pd
+import plotly.io as pio
+
+# Setting default template for Plotly plots to "plotly_white"
+pio.templates.default = "plotly_white"
+
+# Load dataset (you need to have a file named 'Instagram data.csv' in your working directory)
+df = pd.read_csv('E:/AICP/Internship/Week 5/EDA Internship 3.0 Week 5/Instagram data.csv', encoding='latin1')
+
+# Display column names and their info
+print(df.columns)
+print(df.info())
+
+
+*Question 02*
+
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
+from collections import Counter
+
+# Load the dataset into a DataFrame
+df = pd.read_csv('E:/AICP/Internship/Week 5/EDA Internship 3.0 Week 5/Instagram data.csv', encoding='latin1')
+
+# Set plotly default template
+pio.templates.default = "plotly_white"
+
+# Show descriptive statistics
+descriptive_stats = df.describe()
+print("Descriptive Statistics:")
+print(descriptive_stats)
+
+# Instagram Post Analysis
+# Example: Plotting the distribution of likes and comments
+fig = px.histogram(df, x="Likes", title="Distribution of Likes")
+fig.show()
+
+fig = px.histogram(df, x="Comments", title="Distribution of Comments")
+fig.show()
+
+# Example: Creating a word cloud of post captions
+# Get all captions and split them into words
+all_captions = ' '.join(df['Caption'].dropna())
+words = all_captions.split()
+
+# Count the frequency of each word
+word_counts = Counter(words)
+
+# Create a bar chart of the most common words
+common_words = word_counts.most_common(50)
+word_values = [word[0] for word in common_words]
+word_counts = [word[1] for word in common_words]
+
+fig = go.Figure([go.Bar(x=word_values, y=word_counts)])
+fig.update_layout(title_text="Word Cloud of Post Captions")
+fig.show()
+
+
+
+*Question 03*
+
+import pandas as pd
+import plotly.io as pio
+
+# Set plotly default template
+pio.templates.default = "plotly_white"
+
+# Load the dataset into a DataFrame
+df = pd.read_csv('E:/AICP/Internship/Week 5/EDA Internship 3.0 Week 5/Instagram data.csv', encoding='latin1')
+
+# Check for missing values
+missing_values = df.isnull().sum()
+
+# Print the result
+print("Missing Values in the Dataset:")
+print(missing_values)
+
+
+*Question 04*
+
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
+
+# Set plotly default template
+pio.templates.default = "plotly_white"
+
+# Load the dataset into a DataFrame
+df = pd.read_csv('E:/AICP/Internship/Week 5/EDA Internship 3.0 Week 5/Instagram data.csv', encoding='latin1')
+
+# Explore the "Impressions" column
+impressions_data = df['Impressions']
+
+# Summary statistics
+print("Summary Statistics for Impressions:")
+print(impressions_data.describe())
+
+# Plot a histogram to visualize the distribution of impressions
+fig = px.histogram(df, x="Impressions", title="Distribution of Impressions")
+fig.show()
+
+
+
+*Question 05*
+
+import matplotlib.pyplot as plt
+
+# Sample data
+index = range(101)  # Assuming 101 data points for the index
+impressions = [0] * 101  # Initialize with zeros for 101 data points
+
+# Replace the corresponding indices with actual impressions values
+impressions[0] = 0
+impressions[25] = 1000
+impressions[50] = 1500
+impressions[75] = 35000
+
+plt.figure(figsize=(10, 5))
+plt.plot(index, impressions, marker='o', color='b', label='Impressions')
+plt.title('Impressions Over Time')
+plt.xlabel('Index')
+plt.ylabel('Impressions')
+plt.legend()
+plt.show()
+
+
+
+*Question 06*
+
+import matplotlib.pyplot as plt
+
+# Data to plot
+labels = 'From Home', 'From Hashtags', 'From Explore', 'From Other'
+sizes = [44.1, 19.2, 33.6, 3.1]  # The last value is assumed for 'From Other'
+colors = ['pink', 'green', 'blue', 'grey']
+explode = (0.1, 0, 0, 0)  # explode the first slice (From Home)
+
+# Plot
+plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+autopct='%1.1f%%', shadow=True, startangle=140)
+
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title('Reach from Different Sources')
+plt.show()
+
+
+
+*Question 07*
+
+import matplotlib.pyplot as plt
+
+# Data to plot
+labels = 'Likes', 'Saves', 'Shares', 'Comments'
+sizes = [50.6, 44.7, 2.75, 1.95]  # The percentages for each segment
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
+explode = (0.1, 0, 0, 0)  # explode the first slice (Likes)
+
+# Plot
+plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+autopct='%1.1f%%', shadow=True, startangle=140)
+
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title('Distribution of Engagement Sources')
+plt.show()
+
+
+
+*Question 08*
+
+import matplotlib.pyplot as plt
+
+# Data to plot
+labels = 'Likes', 'Saves', 'Shares', 'Comments'
+sizes = [50.6, 44.7, 2.75, 1.95]  # The percentages for each segment
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
+explode = (0.1, 0, 0, 0)  # explode the first slice (Likes)
+
+# Plot
+plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+autopct='%1.1f%%', shadow=True, startangle=140)
+
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title('Distribution of Engagement Sources')
+plt.show()
+
+
+
+*Question 09*
+
+# Import necessary libraries
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
+
+# Set plotly default template
+pio.templates.default = "plotly_white"
+
+# Load the dataset into a DataFrame
+df = pd.read_csv('E:/AICP/Internship/Week 5/EDA Internship 3.0 Week 5/Instagram data.csv', encoding='latin1')
+
+# Plot the relationship between profile visits and follows
+fig = px.scatter(df, x='Profile Visits', y='Follows', title='Relationship between Profile Visits and Follows')
+fig.update_xaxes(title_text='Profile Visits')
+fig.update_yaxes(title_text='Follows')
+fig.show()
+
+
+
+*Question 10*
+
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+# Sample data: dictionary of word frequencies
+word_freq = {
+    'pythonprogramming': 100,
+    'dataanalytics': 80,
+    'datascientist': 60,
+    'machinelearning': 120,
+    'artificialintelligence': 90
+    # Add more hashtags and their frequencies as needed
+}
+
+# Generate word cloud
+wordcloud = WordCloud(width=700, height=350, background_color='black').generate_from_frequencies(word_freq)
+
+# Display the generated image
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')  # Remove axis
+plt.show()
+
+
+
+*Question 11*
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Sample data: dictionary of word frequencies
+data = {
+    'Impressions': [119, 5703.991597, 4843.780105, 1941, 3467, 4289, 6138, 36919],
+    'From Home': [119, 2475.789916, 1489.386348, 1133, 1945, 2207, 2602.5, 13473],
+    'From Hashtags': [119, 1887.512605, 1884.361443, 116, 726, 1278, 2363.5, 11817],
+    'From Explore': [119, 1078.100840, 2613.026132, 0, 157.5, 326, 689.5, 17414],
+    'From Other': [119, 171.092437, 289.431031, 9, 38, 74, 196, 2547],
+    'Saves': [119, 153.310924, 156.317731, 22, 65, 109, 169, 1095],
+    'Comments': [119, 6.663866, 3.544576, 0, 4, 6, 8, 19],
+    'Shares': [119, 9.361345, 10.089205, 0, 3, 6, 13.5, 75],
+    'Likes': [119, 173.781513, 82.378947, 72, 121.5, 151, 204, 549],
+    'Profile Visits': [119, 50.621849, 87.088402, 4, 15, 23, 42, 611],
+    'Follows': [119, 20.756303, 40.921580, 1, 4, 8, 18, 260]
+}
+
+# Create a DataFrame
+correlation_matrix = pd.DataFrame(data)
+
+# Create a heatmap
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation between all the features')
+plt.show()
+
+
+
+*Question 12*
+
+import matplotlib.pyplot as plt
+
+# Sample data
+hashtags = ['hashtag1', 'hashtag2', 'hashtag3', 'hashtag4']  # Replace with actual hashtags
+counts = [120, 90, 60, 30]  # Replace with actual counts
+
+plt.figure(figsize=(10, 5))
+plt.bar(hashtags, counts, color='blue')
+plt.title('Distribution of Hashtags')
+plt.xlabel('Hashtag')
+plt.ylabel('Count')
+plt.show()
+
+
+
+*Question 13*
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data
+hashtags = ['hashtag1', 'hashtag2', 'hashtag3', 'hashtag4']  # Replace with actual hashtags
+likes = [20000, 15000, 10000, 5000]  # Replace with actual likes count
+impressions = [600000, 400000, 200000, 100000]  # Replace with actual impressions count
+
+x = np.arange(len(hashtags))  # the label locations
+width = 0.35  # the width of the bars
+
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width/2, likes, width, label='Likes')
+rects2 = ax.bar(x + width/2, impressions, width, label='Impressions')
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Counts')
+ax.set_title('Distribution of Likes and Impressions for Each Hashtag')
+ax.set_xticks(x)
+ax.set_xticklabels(hashtags)
+ax.legend()
+
+# Function to attach a label above each bar in rects, displaying its height.
+def autolabel(rects):
+    for rect in rects:
+        height = rect.get_height()
+        ax.annotate('{}'.format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
+autolabel(rects1)
+autolabel(rects2)
+
+fig.tight_layout()
+
+plt.show()
